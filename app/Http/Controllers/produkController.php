@@ -27,7 +27,7 @@ class produkController extends Controller
     {
         $parameter = [
             'username' => $request->username,
-            'password' => md5($plaintext),
+            'password' => md5($request->password),
             
         ];
         $link = $request->link;
