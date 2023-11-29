@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\produkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function(){
     return redirect('/produk');
 });
-Route::get('/produk', function () {
-    return view('pages.produk.index');
-});
+
+Route::get('/produk', [produkController::class,'index']);
+Route::post('/produk-api', [produkController::class,'store_form_api']);
+
 Route::get('/kategori', function () {
     return view('pages.kategori.index');
 });

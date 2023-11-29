@@ -12,7 +12,7 @@ class produkController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.produk.index');
     }
 
     /**
@@ -28,17 +28,33 @@ class produkController extends Controller
         $parameter = [
             'username' => $request->username,
             'password' => md5($request->password),
-            
+
         ];
-        $link = $request->link;
+        // dd(json_encode($parameter));
         $client = new Client();
-        $url = $link;
+        $url = $request->link;
+        // dd($url);
         $response = $client->request('POST', $url, [
-            'headers' => ['Content-Type' => 'application/json'],
-            'body' => json_encode($parameter)
-        ]);
+            'headers' => ['Content-type: application/x-www-form-urlencoded'],
+                'form_params' => [
+                    'username' => $request->username,
+                    'password' => md5($request->password),
+
+                ],
+                'timeout' => 20, // Response timeout
+                'connect_timeout' => 20, // Connection timeout
+            ]);
         $data = $response->getBody()->getContents();
         $arrayData = json_decode($data, true);
+        $data =$arrayData['data'];
+
+        $collection = new Collection($data_package);
+
+        $data_category = $collection->filter(function ($value) {
+            return $value['status'] == 1;
+        });
+
+        dd($data);
     }
 
     /**
