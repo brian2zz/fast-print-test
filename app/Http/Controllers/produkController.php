@@ -27,12 +27,6 @@ class produkController extends Controller
 
     public function store_form_api(Request $request)
     {
-        $parameter = [
-            'username' => $request->username,
-            'password' => md5($request->password),
-
-        ];
-
         $client = new Client();
         $url = $request->link;
         $response = $client->request('POST', $url, [
