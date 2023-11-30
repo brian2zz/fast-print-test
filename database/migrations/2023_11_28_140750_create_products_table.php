@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id('id_produk');
             $table->string('nama_produk');
             $table->integer('harga');
-            $table->unsignedBigInteger('id_kategori')->nullable();
-            $table->unsignedBigInteger('id_status')->nullable();
+            $table->unsignedBigInteger('kategori_id')->nullable();
+            $table->unsignedBigInteger('status_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('id_kategori')->references('id_kategori')->on('categories')->onDelete('set null');
-            $table->foreign('id_status')->references('id_status')->on('statuses')->onDelete('set null');
+            $table->foreign('kategori_id')->references('id_kategori')->on('categories')->onDelete('set null');
+            $table->foreign('status_id')->references('id_status')->on('statuses')->onDelete('set null');
         });
     }
 

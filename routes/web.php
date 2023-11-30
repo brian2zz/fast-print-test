@@ -19,7 +19,10 @@ Route::get('/', function(){
 });
 
 Route::get('/produk', [produkController::class,'index']);
+Route::post('/produk', [produkController::class,'store']);
 Route::post('/produk-api', [produkController::class,'store_form_api']);
+Route::put('/produk/{id}', [produkController::class,'update']);
+Route::delete('/produk/{id}', [produkController::class,'destroy']);
 
 Route::get('/kategori', function () {
     return view('pages.kategori.index');

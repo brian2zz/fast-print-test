@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class category extends Model
 {
     use HasFactory;
-    protected $fillable = ['id_status','nama_status','created_at','updated_at'];
+    protected $fillable = ['id_kategori','nama_kategori','created_at','updated_at'];
 
     public function produk()
     {
